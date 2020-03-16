@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @grade.student_id %>
+</p>
+
+<p>
+  <strong>Names:</strong>
+  <%= @grade.names %>
+</p>
+
+<p>
+  <strong>Assignment:</strong>
+  <%= @grade.assignment %>
+</p>
+
+<p>
+  <strong>Quiz:</strong>
+  <%= @grade.quiz %>
+</p>
+
+<p>
+  <strong>Mid semester:</strong>
+  <%= @grade.mid_semester %>
+</p>
+
+<p>
+  <strong>Final exam:</strong>
+  <%= @grade.final_exam %>
+</p>
+
+<p>
+  <strong>Total out 100:</strong>
+  <%= @grade.total_out_100 %>
+</p>
+
+<p>
+  <strong>Total out 20:</strong>
+  <%= @grade.total_out_20 %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @grade.course %>
+</p>
+
+<%= link_to 'Edit', edit_grade_path(@grade) %> |
+<%= link_to 'Back', grades_path %>

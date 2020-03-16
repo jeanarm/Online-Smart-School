@@ -1,0 +1,16 @@
+<div style="margin-top:6rem">
+
+<% @users.each do |user| %>
+  <% if user.id != current_user.id %>
+    <li>
+      <div class="item">
+        <%= user.name %>
+        <%= link_to 'message', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
+    
+        </div>
+    </li>
+    <% else %>
+    <%= link_to user.name %>(you)
+  <% end %>
+<% end %>
+</div>
