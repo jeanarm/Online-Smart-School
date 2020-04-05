@@ -3,7 +3,8 @@ class GradesController < ApplicationController
   # GET /grades
   # GET /grades.json
   def index
-    @grades = Grade.all
+    @search = Grade.search(params[:q])
+    @grades = @search.result.order(:student_id).page(params[:page])
   end
 
   # GET /grades/1
@@ -27,9 +28,6 @@ class GradesController < ApplicationController
 
     respond_to do |format|
       if @grade.save
-        # @grade.total_out_100=(@grade.assignment+@grade.quiz+@grade.mid_semester+@grade.final_exam).to_f
-        # @grade.total_out_20=(@grade.total_out_100/5)
-        # @grade.update
         format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
         format.json { render :show, status: :created, location: @grade }
       else

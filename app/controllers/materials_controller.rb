@@ -5,7 +5,7 @@ class MaterialsController < ApplicationController
   # GET /materials.json
   def index
     @course =Course.find(params[:course_id])
-    @materials = @course.materials.all
+    @materials = @course.materials.all.page(params[:page])
   end
 
   # GET /materials/1

@@ -1,4 +1,4 @@
-<div style="margin-top:6rem">
+<div>
 
 <% if @over_ten %>
   <%= link_to 'Previous messages', '?m=all' %>
@@ -10,7 +10,6 @@
       <div class="item">
         <div class="content">
           <div class="header"><strong><%= message.user.name %></strong> <%= message.message_time %></div>
-         
               <i class="right triangle icon"></i>
               <%= message.content %>
               <% if message.user == current_user %>

@@ -1,45 +1,50 @@
 <p id="notice"><%= notice %></p>
-<div class="card" style="margin-top:4rem; width:50%;margin-left:200px;margin-right:200px;">
-  <div class="card-body "style="text-alin:center;">
+<div>
+  <div>
 <h1>Comments</h1>
 
     <% @comments.each do |comment| %>
-
-      <p>
+      <div class="col-lg-4 col-md-6 course-item">
       <% if user_signed_in? %>
-      <% check = 0, links='1', id=nil%>
-      <% Profile.all.each do |profile| %>
-          <% check = 1%>
-          <%links = comment.user.profile.image.url %>
-          <%id =profile%>
-        <% end %>
-     <% if check==1 %>
-     <span style="color:white"><hr></span>
-      <p style="color:white"><%= image_tag links, class:"round" unless links.blank? %> 
-      <% end %>
-      </p>
-      <% else %>
-      <p><i class="fal fa-user"></i></p>
-     <% end %>
-      <%= comment.user.name %></p>
-        <p><%= comment.title %></p>
-        <% if comment.image.url %>
-        <p><%= image_tag comment.image.url, class:"image" %></p>
-        <% end %>
-        <p>Commented question:<%= comment.question.title %></p>
-        <%= link_to 'Back', questions_path %>
-        <% if user_signed_in? %>
-        <%if current_user.id==comment.user_id %>
-        <%= link_to 'Edit', [comment.question, comment], method: :edit%>
-         <%= link_to 'Delete', [comment.question, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-        <% end %>
-        <hr>
+  <% check = 0, links='1', id=nil%>
+  <% Profile.all.each do |profile| %>
+      <% check = 1%>
+      <%links = comment.user.profile.image.url %>
+      <%id =profile%>
     <% end %>
-
-
-<br>
-
-<%= link_to 'add Comment', new_question_comment_path %>
+ <% if check==1 %>
+ <span style="color:white"></span>
+  <p style="color:white"><%= image_tag links, class:"round" unless links.blank? %> 
+  <% end %>
+  </p>
+  <% else %>
+  <p><i class="fal fa-user"></i></p>
+ <% end %>
+     <%= comment.user.name %>-><i style="color:green"><%= link_to 'message', conversations_path(sender_id: current_user.id, recipient_id: comment.user.id), method: :post %></i>
+        <div class="course-thumb">
+        <% if comment.image.url %>
+        <%=  image_tag comment.image.url%>
+        <% end %>
+          <div class="course-cat">
+            <span><%= comment.title %></span>
+          </div>
+        </div>
+        <div class="course-info">
+          <div class="date"><i class="fa fa-clock-o"></i><%=comment.created_at %> </div>
+          <p>Commented question:<%= comment.question.title %></p>
+          <%= link_to 'Back', questions_path %>
+          <% if user_signed_in? %>
+          <%if current_user.id==comment.user_id %>
+          <%= link_to 'Edit', [comment.question, comment], method: :edit, :"data-no-turbolink" => true, method: "get" %>
+           <%= link_to 'Delete', [comment.question, comment], method: :delete, data: { confirm: 'Are you sure?' }%>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+      </div>
+      </div>
+<%= link_to 'add Comment', new_question_comment_path, :"data-no-turbolink" => true, method: "get"  %>
+<%= paginate @comments%>
 </div>
 </div>

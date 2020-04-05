@@ -25,6 +25,6 @@ class User < ApplicationRecord
           active_relationships.find_by(followed_id: other_user.id).destroy
         end
         
-        
+        paginates_per 10
         
         end

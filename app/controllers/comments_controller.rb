@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   def index
     
      @question =Question.find(params[:question_id])
-    @comments = @question.comments.all
+    @comments = @question.comments.all.page(params[:page])
   end
 
   # GET /comments/1

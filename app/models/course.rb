@@ -5,4 +5,5 @@ class Course < ApplicationRecord
   validates :name, presence: true
   validates :credit, presence: true
   validates :code, presence: true
+  paginates_per 5
 end
