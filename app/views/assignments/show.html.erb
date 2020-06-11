@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @assignment.student_id %>
+</p>
+
+<p>
+  <strong>Names:</strong>
+  <%= @assignment.names %>
+</p>
+
+<p>
+  <strong>Assignment:</strong>
+  <%= @assignment.assignment %>
+</p>
+
+<p>
+  <strong>Marks:</strong>
+  <%= @assignment.marks %>
+</p>
+
+<p>
+  <strong>Average out of15:</strong>
+  <%= @assignment.average_out_of15 %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @assignment.course.name %>
+</p>
+
+<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<%= link_to 'Back', assignments_path %>

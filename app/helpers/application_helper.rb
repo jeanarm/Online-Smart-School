@@ -12,4 +12,5 @@ def devise_mapping
     @devise_mapping ||=Devise.devise_mapping[:user]
 end
 
+
 end

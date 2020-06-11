@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_115844) do
+ActiveRecord::Schema.define(version: 2020_05_16_101343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.string "student_id"
+    t.string "names"
+    t.string "assignment"
+    t.float "marks", default: 0.0
+    t.float "average_out_of15", default: 0.0
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_assignments_on_course_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "title"
@@ -45,6 +57,17 @@ ActiveRecord::Schema.define(version: 2020_03_12_115844) do
     t.datetime "updated_at", null: false
     t.string "code"
     t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "exams", force: :cascade do |t|
+    t.string "student_id"
+    t.string "names"
+    t.float "mid_exam", default: 0.0
+    t.float "final_exam", default: 0.0
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_exams_on_course_id"
   end
 
   create_table "grades", force: :cascade do |t|
@@ -101,6 +124,18 @@ ActiveRecord::Schema.define(version: 2020_03_12_115844) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "quizes", force: :cascade do |t|
+    t.string "student_id"
+    t.string "names"
+    t.string "quiz"
+    t.float "marks", default: 0.0
+    t.float "average_out_of15", default: 0.0
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_quizes_on_course_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -109,6 +144,13 @@ ActiveRecord::Schema.define(version: 2020_03_12_115844) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "summaries", force: :cascade do |t|
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_summaries_on_course_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -126,13 +168,17 @@ ActiveRecord::Schema.define(version: 2020_03_12_115844) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "assignments", "courses"
   add_foreign_key "comments", "questions"
   add_foreign_key "comments", "users"
   add_foreign_key "courses", "users"
+  add_foreign_key "exams", "courses"
   add_foreign_key "grades", "courses"
   add_foreign_key "materials", "courses"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "quizes", "courses"
+  add_foreign_key "summaries", "courses"
 end

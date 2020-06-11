@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :exams
+  resources :quizes
+  resources :assignments
   resources :grades
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'welcome#index'

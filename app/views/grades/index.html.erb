@@ -34,8 +34,8 @@
         <td><%= grade.total_out_100 %></td>
         <td><%= grade.total_out_20 %></td>
         <td><%= grade.course.name %></td>
-        <td><%= link_to 'Show', grade %></td>
-        <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
+        <td><%= link_to 'Show', grade, :"data-no-turbolink" => true, method: "get"  %></td>
+        <td><%= link_to 'Edit', edit_grade_path(grade), :"data-no-turbolink" => true, method: "get"  %></td>
         <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
