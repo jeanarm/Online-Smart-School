@@ -20,29 +20,5 @@
   <%= @course.user.name %>
 </p>
 
-<p>
-<h1><%= @course.name %>'s Grade</h1>
-<% @course_assignments.each do |assignment| %>
- <%=assignment.student_id%>
- <%=assignment.names%>
- <%=assignment.course.name%>
- <%=assignment.calculate_marks_average%>
-  <% end %>
-</p>
-
-<% @course.quizes.each do |quiz| %>
-  <%=quiz.student_id%>
-  <%=quiz.names%>
-  <%=quiz.course.name%>
-  <%=quiz.calculate_marks_average%>
-   <% end %>
- </p>
- Mid Exam:<%= @course.exam.mid_exam %>
- Final EXam:<%=@course.exam.final_exam %>
- </p>
-
-
-
-
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
