@@ -1,22 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Grades</h1>
-<%= search_form_for @search do |f| %>  
-  <%= f.label :student_id_cont, "Enter student id" %>
-  <%= f.search_field :student_id_cont %>
-  <%= f.submit%>
-<% end %>
-<table class="table">
+
+<table>
   <thead>
     <tr>
       <th>Student</th>
       <th>Names</th>
-      <th>Assignment</th>
-      <th>Quiz</th>
-      <th>Mid semester</th>
-      <th>Final exam</th>
-      <th>Total out 100</th>
-      <th>Total out 20</th>
+      <th>Evaluation type</th>
+      <th>Marks</th>
       <th>Course</th>
       <th colspan="3"></th>
     </tr>
@@ -27,20 +19,17 @@
       <tr>
         <td><%= grade.student_id %></td>
         <td><%= grade.names %></td>
-        <td><%= grade.assignment %></td>
-        <td><%= grade.quiz %></td>
-        <td><%= grade.mid_semester %></td>
-        <td><%= grade.final_exam %></td>
-        <td><%= grade.total_out_100 %></td>
-        <td><%= grade.total_out_20 %></td>
-        <td><%= grade.course.name %></td>
-        <td><%= link_to 'Show', grade, :"data-no-turbolink" => true, method: "get"  %></td>
-        <td><%= link_to 'Edit', edit_grade_path(grade), :"data-no-turbolink" => true, method: "get"  %></td>
+        <td><%= grade.evaluation_type %></td>
+        <td><%= grade.marks %></td>
+        <td><%= grade.course %></td>
+        <td><%= link_to 'Show', grade %></td>
+        <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
         <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 <br>
+
 <%= link_to 'New Grade', new_grade_path %>
-<%= paginate @grades%>

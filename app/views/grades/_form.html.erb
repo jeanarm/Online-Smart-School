@@ -10,44 +10,31 @@
       </ul>
     </div>
   <% end %>
-<% if params[:course_id] %>
-<div class="field">
-<%= form.label :student_id %>
-<%= form.text_field :student_id %>
-</div>
 
-<div class="field">
-<%= form.label :names %>
-<%= form.text_field :names %>
-</div>
   <div class="field">
-    <%= form.hidden_field :course_id, :value => params[:course_id] %>
+    <%= form.label :student_id %>
+    <%= form.text_field :student_id %>
   </div>
-<% else %>
 
-<div class="field">
-<%= form.label :assignment %>
-<%= form.text_field :assignment %>
-</div>
-
-<div class="field">
-<%= form.label :quiz %>
-<%= form.text_field :quiz %>
-</div>
-
-<div class="field">
-<%= form.label :mid_semester %>
-<%= form.text_field :mid_semester %>
-</div>
-
-<div class="field">
-<%= form.label :final_exam %>
-<%= form.text_field :final_exam %>
-</div>
-<div class="field">
-    <%= form.hidden_field :course_id %>
+  <div class="field">
+    <%= form.label :names %>
+    <%= form.text_field :names %>
   </div>
-<% end %>
+
+  <div class="field">
+    <%= form.label :evaluation_type %>
+    <%= form.text_field :evaluation_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :marks %>
+    <%= form.text_field :marks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course_id %>
+    <%= form.text_field :course_id %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

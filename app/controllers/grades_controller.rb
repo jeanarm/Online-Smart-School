@@ -1,10 +1,10 @@
 class GradesController < ApplicationController
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
+
   # GET /grades
   # GET /grades.json
   def index
-    @search = Grade.search(params[:q])
-    @grades = @search.result.order(:student_id).page(params[:page])
+    @grades = Grade.all
   end
 
   # GET /grades/1
@@ -69,6 +69,6 @@ class GradesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grade_params
-      params.require(:grade).permit(:student_id, :names, :assignment, :quiz, :mid_semester, :final_exam, :total_out_100, :total_out_20, :course_id)
+      params.require(:grade).permit(:student_id, :names, :evaluation_type, :marks, :course_id)
     end
 end
