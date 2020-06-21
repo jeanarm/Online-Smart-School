@@ -2,7 +2,7 @@
 
 <h1>Grades</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Student</th>
@@ -21,12 +21,16 @@
         <td><%= grade.names %></td>
         <td><%= grade.evaluation_type %></td>
         <td><%= grade.marks %></td>
-        <td><%= grade.course %></td>
+        <td><%= grade.course.name%></td>
         <td><%= link_to 'Show', grade %></td>
         <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
         <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        </tr>
+        <tr>
+       <% @id=grade.student_id %>
+        </tr>
     <% end %>
+    <td>Average: <%= Grade.where(:student_id => @id).average(:marks).round(2) %> </td>
   </tbody>
 </table>
 
