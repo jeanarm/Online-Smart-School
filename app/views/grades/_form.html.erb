@@ -21,10 +21,10 @@
     <%= form.text_field :names %>
   </div>
 
-  <div class="field">
-    <%= form.label :evaluation_type %>
-    <%= form.text_field :evaluation_type %>
-  </div>
+<div class="field"  style="width:80px">
+<%= form.label :evaluation_type %>
+<%= form.select :evaluation_type, ['Assignment', 'Quiz', 'Mid-Exam','Final-Exam'], class:"form-control"%>
+</div>
 
   <div class="field">
     <%= form.label :marks %>

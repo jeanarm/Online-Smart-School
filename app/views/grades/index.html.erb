@@ -28,10 +28,22 @@
         </tr>
         <tr>
        <% @id=grade.student_id %>
+       <% @assignment="Assignment" %>
+       <% @quiz="quiz" %>
+       <% @mid="Mid-Exam"%>
+       <% @final="Final-Exam"%>
         </tr>
     <% end %>
-    <td>Average: <%= Grade.where(:student_id => @id).average(:marks).round(2) %> </td>
-  </tbody>
+    <td>Average of all assignments : <%= @assignments= Grade.where(:student_id => @id, :evaluation_type => @assignment).average(:marks).to_f %> </td>
+    <td>Average of all quizes :<%= @quizes=  Grade.where(:student_id => @id, :evaluation_type => @quiz).average(:marks).to_f %> </td>
+    <td>Mid : <%= @midexam= Grade.where(:student_id => @id, :evaluation_type => @mid).average(:marks).to_f %> </td>
+    <td>Final: <%= @finalexam= Grade.where(:student_id => @id, :evaluation_type => @final).average(:marks).to_f %> </td>
+   <tr>
+    <td> /100:<%= @sum= @assignments + @quizes + @midexam + @finalexam %><td>
+    <td> /20: <%= @sum/5 %><td>
+   <tr>
+    
+    </tbody>
 </table>
 
 <br>
