@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <div id="content">
       <h1>Questions</h1>
+    
       <%= search_form_for @search do |f| %>  
         <%= f.label :title_cont, "Enter title" %>
         <%= f.search_field :title_cont %>
@@ -28,15 +29,16 @@
      <%= question.user.name %> <i class='btn btn-primary btn-sm mr-5 mb-2'><%= link_to 'send message', conversations_path(sender_id: current_user.id, recipient_id: question.user.id), method: :post %></i>
      <div class="course-thumb">
         <% if question.image.url %>
-        <%= link_to image_tag(question.image.url),question, :"data-no-turbolink" => true, method: "get"%>
+        <%=  image_tag question.image.url%>
         <% end %>
           <div class="course-cat">
             <span><%= question.title %></span>
           </div>
         </div>
-      <div class="course-info">
-       <div class="date"><i class="fa fa-clock-o"></i><%= time_ago_in_words(question.created_at) %> ago </div>
-      <h4><%= question.content %></h4> 
+        <div class="course-info">
+          <div class="date"><i class="fa fa-clock-o"></i><%= question.created_at %> </div>
+          <h4><%= question.content %></h4>
+
     <%= link_to 'show' , question, :"data-no-turbolink" => true, method: "get", class:"btn btn-info" %>
    <%if user_signed_in?%>
    <% if current_user.id == question.user_id %>
