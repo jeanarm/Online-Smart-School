@@ -28,30 +28,30 @@
      <%= question.user.name %> <i class='btn btn-primary btn-sm mr-5 mb-2'><%= link_to 'send message', conversations_path(sender_id: current_user.id, recipient_id: question.user.id), method: :post %></i>
      <div class="course-thumb">
         <% if question.image.url %>
-        <%=  image_tag question.image.url%>
+        <%= link_to image_tag(question.image.url),question, :"data-no-turbolink" => true, method: "get"%>
         <% end %>
           <div class="course-cat">
             <span><%= question.title %></span>
           </div>
         </div>
-        <div class="course-info">
-          <div class="date"><i class="fa fa-clock-o"></i><%= question.created_at %> </div>
-          <h4><%= question.content %></h4>
-       
-   <%= link_to 'Show', question, :"data-no-turbolink" => true, method: "get" %>
+      <div class="course-info">
+       <div class="date"><i class="fa fa-clock-o"></i><%= time_ago_in_words(question.created_at) %> ago </div>
+      <h4><%= question.content %></h4> 
+    <%= link_to 'show' , question, :"data-no-turbolink" => true, method: "get", class:"btn btn-info" %>
    <%if user_signed_in?%>
    <% if current_user.id == question.user_id %>
-   <%= link_to 'Edit', edit_question_path(question), :"data-no-turbolink" => true, method: "get" %>
-   <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %>
+   <%= link_to 'Edit', edit_question_path(question), :"data-no-turbolink" => true, method: "get", class:"btn btn-warning" %>
+   <%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+   
    <% end %>
-   <%= link_to 'add Comment', new_question_comment_path(question), :"data-no-turbolink" => true, method: "get"%>
+   <%= link_to 'add Comment', new_question_comment_path(question), :"data-no-turbolink" => true, method: "get",class:"btn btn-success"%>
   <% end %>
-  <%= question.comments.count%> <%= link_to 'Comments', question_comments_path(question), :"data-no-turbolink" => true, method: "get" %>
+  <%= question.comments.count%> <%= link_to 'Comments', question_comments_path(question), :"data-no-turbolink" => true, method: "get", class:"btn btn-secondary" %>
         </div>
       </div>
       <% end %>
       </div>
       </div>
-<%= link_to 'New Question', new_question_path, :"data-no-turbolink" => true, method: "get" %>
+<%= link_to 'New Question', new_question_path, :"data-no-turbolink" => true, method: "get",class:"btn btn-primary" %>
 <%= paginate @questions%>
 </div>

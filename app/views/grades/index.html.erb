@@ -7,7 +7,7 @@
   <%= f.submit%>
 <% end %>
 <table class="table">
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th>Student</th>
       <th>Names</th>
@@ -34,13 +34,13 @@
         <td><%= grade.total_out_100 %></td>
         <td><%= grade.total_out_20 %></td>
         <td><%= grade.course.name %></td>
-        <td><%= link_to 'Show', grade %></td>
-        <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
-        <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', grade, class:"btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_grade_path(grade),class:"btn btn-warning" %></td>
+        <td><%= link_to 'Delete', grade, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'New Grade', new_grade_path %>
+<%= link_to 'New Grade', new_grade_path, class:"btn btn-success" %>
 <%= paginate @grades%>
