@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_115844) do
+ActiveRecord::Schema.define(version: 2020_08_17_095516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,12 +50,16 @@ ActiveRecord::Schema.define(version: 2020_03_12_115844) do
   create_table "grades", force: :cascade do |t|
     t.string "student_id"
     t.string "names"
-    t.float "assignment", default: 0.0
-    t.float "quiz", default: 0.0
-    t.float "mid_semester", default: 0.0
+    t.float "quiz_1", default: 0.0
+    t.float "quiz_2", default: 0.0
+    t.float "quiz_3", default: 0.0
+    t.float "assignment_1", default: 0.0
+    t.float "assignment_2", default: 0.0
+    t.float "assignment_3", default: 0.0
+    t.float "mid_exam", default: 0.0
     t.float "final_exam", default: 0.0
-    t.float "total_out_100", default: 0.0
-    t.float "total_out_20", default: 0.0
+    t.float "out_of_100", default: 0.0
+    t.float "out_of_20", default: 0.0
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -122,6 +126,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_115844) do
     t.string "name"
     t.string "user_type"
     t.boolean "admin", default: false
+    t.string "student_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

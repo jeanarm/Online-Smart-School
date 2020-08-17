@@ -27,7 +27,8 @@
     </div>
     <div class="field"  style="width:80px">
     user type<br />
-  <%= f.select :user_type, ['Lecturer', 'Student'], class:"form-control"%>
+    <%= f.select :user_type, ['Lecturer', 'Student'], class:"form-control", id:"student"%>
+   <%= f.text_field :student_id, "data-depends-on" => "#student", "data-depends-on-value" => "Student" %>
   </div>
     <div class="actions">
       <%= f.submit "Sign up" %>

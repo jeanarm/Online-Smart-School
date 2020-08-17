@@ -1,5 +1,6 @@
 class GradesController < ApplicationController
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
+
   # GET /grades
   # GET /grades.json
   def index
@@ -69,6 +70,6 @@ class GradesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def grade_params
-      params.require(:grade).permit(:student_id, :names, :assignment, :quiz, :mid_semester, :final_exam, :total_out_100, :total_out_20, :course_id)
+      params.require(:grade).permit(:student_id, :names, :quiz_1, :quiz_2, :quiz_3, :assignment_1, :assignment_2, :assignment_3, :mid_exam, :final_exam, :out_of_100, :out_of_20, :course_id)
     end
 end

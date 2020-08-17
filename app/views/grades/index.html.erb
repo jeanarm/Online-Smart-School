@@ -11,12 +11,16 @@
     <tr>
       <th>Student</th>
       <th>Names</th>
-      <th>Assignment</th>
-      <th>Quiz</th>
-      <th>Mid semester</th>
+      <th>Quiz 1</th>
+      <th>Quiz 2</th>
+      <th>Quiz 3</th>
+      <th>Assignment 1</th>
+      <th>Assignment 2</th>
+      <th>Assignment 3</th>
+      <th>Mid exam</th>
       <th>Final exam</th>
-      <th>Total out 100</th>
-      <th>Total out 20</th>
+      <th>Out of 100</th>
+      <th>Out of 20</th>
       <th>Course</th>
       <th colspan="3"></th>
     </tr>
@@ -27,20 +31,26 @@
       <tr>
         <td><%= grade.student_id %></td>
         <td><%= grade.names %></td>
-        <td><%= grade.assignment %></td>
-        <td><%= grade.quiz %></td>
-        <td><%= grade.mid_semester %></td>
+        <td><%= grade.quiz_1 %></td>
+        <td><%= grade.quiz_2 %></td>
+        <td><%= grade.quiz_3 %></td>
+        <td><%= grade.assignment_1 %></td>
+        <td><%= grade.assignment_2 %></td>
+        <td><%= grade.assignment_3 %></td>
+        <td><%= grade.mid_exam %></td>
         <td><%= grade.final_exam %></td>
-        <td><%= grade.total_out_100 %></td>
-        <td><%= grade.total_out_20 %></td>
+        <td><%= grade.out_of_100 %></td>
+        <td><%= grade.out_of_20 %></td>
         <td><%= grade.course.name %></td>
-        <td><%= link_to 'Show', grade, class:"btn btn-info" %></td>
-        <td><%= link_to 'Edit', edit_grade_path(grade),class:"btn btn-warning" %></td>
-        <td><%= link_to 'Delete', grade, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+        <td><%= link_to 'Show', grade %></td>
+        <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
+        <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 <br>
-<%= link_to 'New Grade', new_grade_path, class:"btn btn-success" %>
+
+<%= link_to 'New Grade', new_grade_path %>
 <%= paginate @grades%>
