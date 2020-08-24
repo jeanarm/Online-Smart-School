@@ -1,59 +1,73 @@
-<p id="notice"><%= notice %></p>
-<div id="content">
-      <h1>Questions</h1>
-    
-      <%= search_form_for @search do |f| %>  
-        <%= f.label :title_cont, "Enter title" %>
-        <%= f.search_field :title_cont %>
-        <%= f.submit%>
-      <% end %>
-      <div class="row">
-      <!-- course item -->
-      <% @questions.each do |question| %>
-      <div class="col-lg-4 col-md-6 course-item">
-      <% if user_signed_in? %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+  .cont{
+  margin-bottom: 15rem;
+  margin-top: 5rem;
+  }
+
+</style>
+</head>
+<body>
+<center>
+<div class="container">
+<div class="row">
+<div class="col-md-8" style="margin-left:10rem;">
+<div class="card">
+<% @questions.each do |question| %>
+  <% if user_signed_in? %>
   <% check = 0, links='1', id=nil%>
   <% Profile.all.each do |profile| %>
       <% check = 1%>
       <%links = question.user.profile.image.url %>
       <%id =profile%>
     <% end %>
- <% if check==1 %>
- <span style="color:white"></span>
-  <p style="color:white"><%= image_tag links, class:"round" unless links.blank? %>
+  <% if check==1 %>
+  <span style="color:white"></span>
+  <p style="color:white"><%= image_tag links, class:"round" unless links.blank? %></p>
+  <p><%= question.user.name %>--><%= link_to 'Start conversation', conversations_path(sender_id: current_user.id, recipient_id: question.user.id), method: :post, class:"btn btn-outline-primary my-2 my-sm-0" %>
   <% end %>
   </p>
   <% else %>
   <p><i class="fal fa-user"></i></p>
- <% end %>
-     <%= question.user.name %> <i class='btn btn-primary btn-sm mr-5 mb-2'><%= link_to 'send message', conversations_path(sender_id: current_user.id, recipient_id: question.user.id), method: :post %></i>
-     <div class="course-thumb">
-        <% if question.image.url %>
-        <%=  image_tag question.image.url%>
-        <% end %>
-          <div class="course-cat">
-            <span><%= question.title %></span>
-          </div>
-        </div>
-        <div class="course-info">
-          <div class="date"><i class="fa fa-clock-o"></i><%= question.created_at %> </div>
-          <h4><%= question.content %></h4>
-
-    <%= link_to 'show' , question, :"data-no-turbolink" => true, method: "get", class:"btn btn-info" %>
-   <%if user_signed_in?%>
-   <% if current_user.id == question.user_id %>
-   <%= link_to 'Edit', edit_question_path(question), :"data-no-turbolink" => true, method: "get", class:"btn btn-warning" %>
-   <%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
-   
-   <% end %>
-   <%= link_to 'add Comment', new_question_comment_path(question), :"data-no-turbolink" => true, method: "get",class:"btn btn-success"%>
   <% end %>
-  <%= question.comments.count%> <%= link_to 'Comments', question_comments_path(question), :"data-no-turbolink" => true, method: "get", class:"btn btn-secondary" %>
-        </div>
-      </div>
-      <% end %>
-      </div>
-      </div>
-<%= link_to 'New Question', new_question_path, :"data-no-turbolink" => true, method: "get",class:"btn btn-primary" %>
-<%= paginate @questions%>
+  <% if question.image.url %>
+    <%=  image_tag question.image.url, class:"card-img-top" %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= question.title %></h5>
+    <p class="card-text"><%= question.content %></p>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted"><i class="fa fa-clock-o"></i><%= question.created_at %></small><br>
+    <%= link_to 'show' , question, :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0" %>
+    <%if user_signed_in?%>
+    <% if current_user.id == question.user_id %>
+    <%= link_to 'Edit', edit_question_path(question), :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-warning my-2 my-sm-0" %>
+    <%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger my-2 my-sm-0" %>
+    <% end %>
+    <%= link_to 'add Comment', new_question_comment_path(question), :"data-no-turbolink" => true, method: "get",class:"btn btn-outline-success my-2 my-sm-0"%>
+    <% end %>
+    <%= question.comments.count%><%= link_to 'Comments', question_comments_path(question), :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-secondary my-2 my-sm-0" %>
+  </div><br>
+  <% end %>
+  </div>
+  <hr>
+  <p style="margin-bottom:2rem"><%= link_to 'New Question', new_question_path, :"data-no-turbolink" => true, method: "get",class:"btn btn-outline-primary my-2 my-sm-0" %><p>
+  <%= paginate @questions %>
+
 </div>
+</div>
+</div>
+</center>
+</body>
+</html>

@@ -1,5 +1,6 @@
+<div class="container">
+<div class="row">
 <p id="notice"><%= notice %></p>
-
 <h1>Grades</h1>
 <%= search_form_for @search do |f| %>  
   <%= f.label :student_id_cont, "Enter student id" %>
@@ -28,29 +29,36 @@
 
   <tbody>
     <% @grades.each do |grade| %>
-      <tr>
-        <td><%= grade.student_id %></td>
-        <td><%= grade.names %></td>
-        <td><%= grade.quiz_1 %></td>
-        <td><%= grade.quiz_2 %></td>
-        <td><%= grade.quiz_3 %></td>
-        <td><%= grade.assignment_1 %></td>
-        <td><%= grade.assignment_2 %></td>
-        <td><%= grade.assignment_3 %></td>
-        <td><%= grade.mid_exam %></td>
-        <td><%= grade.final_exam %></td>
-        <td><%= grade.out_of_100 %></td>
-        <td><%= grade.out_of_20 %></td>
-        <td><%= grade.course.name %></td>
-        <td><%= link_to 'Show', grade %></td>
-        <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
-        <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if user_signed_in? %>
+      <% if current_user.name==grade.course.user.name || current_user.name == grade.names %>
+            <tr>
+              <td><%= grade.student_id %></td>
+              <td><%= grade.names %></td>
+              <td><%= grade.quiz_1 %></td>
+              <td><%= grade.quiz_2 %></td>
+              <td><%= grade.quiz_3 %></td>
+              <td><%= grade.assignment_1 %></td>
+              <td><%= grade.assignment_2 %></td>
+              <td><%= grade.assignment_3 %></td>
+              <td><%= grade.mid_exam %></td>
+              <td><%= grade.final_exam %></td>
+              <td><%= grade.out_of_100 %></td>
+              <td><%= grade.out_of_20 %></td>
+              <td><%= grade.course.name %></td>
+              <td><%= link_to 'Show', grade %></td>
+              <% if current_user.id==grade.course.user_id %>
+                    <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
+                    <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+              </tr>
+    <% end %>
+    <% end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Grade', new_grade_path %>
+<%= link_to 'New Grade', new_grade_path, class:"p"%>
 <%= paginate @grades%>
+</div>
+</div>
