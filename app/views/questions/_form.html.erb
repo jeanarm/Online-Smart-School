@@ -131,6 +131,10 @@ body {
     </div>
   <% end %>
 		<h2>Ask A Question</h2>
+		<div class="form-group">
+		Course
+		<%= form.collection_select :course_id, Course.all, :id, :name, class:"form-control input-lg" %>
+		</div>
         <div class="form-group">
         <%= form.text_field :title, class:"form-control input-lg", placeholder:"Enter question's title" %>
         </div>
@@ -139,7 +143,7 @@ body {
         </div> 
         <div class="form-group">
          <%= form.file_field :image, class:"form-control input-lg" %>
-        </div> 
+		</div> 
         <div class="form-group">
         <%= form.hidden_field :user_id %>
         </div>

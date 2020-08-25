@@ -130,6 +130,8 @@ body {
 		</ul>
 	  </div>
 	<% end %>
+	 <h1 style="color:green"> Asked Question: <%= @question.title %></h1>
+	 <br>
 		<h2>Add Comment</h2>
 		<div class="form-group">
 		<%= form.text_area :title, class:"form-control input-lg", placeholder:"Add Comment" %>
