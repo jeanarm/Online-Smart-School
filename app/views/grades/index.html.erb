@@ -1,14 +1,13 @@
-<div class="container">
-<div class="row">
+<style>
+  .resize{
+    margin-bottom: 15rem;
+    margin-top: 5rem;
+  }
+</style>
+<div class="resize">
 <p id="notice"><%= notice %></p>
-<h1>Grades</h1>
-<%= search_form_for @search do |f| %>  
-  <%= f.label :student_id_cont, "Enter student id" %>
-  <%= f.search_field :student_id_cont %>
-  <%= f.submit%>
-<% end %>
 <table class="table">
-  <thead class="thead-dark">
+  <thead class="thead-right">
     <tr>
       <th>Student</th>
       <th>Names</th>
@@ -23,7 +22,7 @@
       <th>Out of 100</th>
       <th>Out of 20</th>
       <th>Course</th>
-      <th colspan="3"></th>
+      <th>Action</th>
     </tr>
   </thead>
 
@@ -45,11 +44,13 @@
               <td><%= grade.out_of_100 %></td>
               <td><%= grade.out_of_20 %></td>
               <td><%= grade.course.name %></td>
-              <td><%= link_to 'Show', grade %></td>
-              <% if current_user.id==grade.course.user_id %>
-                    <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
-                    <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td>
+                  <%= link_to 'Show', grade, class:"btn btn-outline-primary my-2 my-sm-0" %>
+                  <% if current_user.id==grade.course.user_id %>
+                    <%= link_to 'Edit', edit_grade_path(grade), class:"btn btn-outline-success my-2 my-sm-0" %>
+                  <%= link_to 'Destroy', grade, class:"btn btn-outline-danger my-2 my-sm-0", method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
+              </td>
               </tr>
     <% end %>
     <% end %>
@@ -60,5 +61,4 @@
 <br>
 <%= link_to 'New Grade', new_grade_path, class:"p"%>
 <%= paginate @grades%>
-</div>
 </div>

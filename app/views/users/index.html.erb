@@ -41,7 +41,17 @@
           <th scope="col"><%= user.name %></th>
           <th scope="col"><%= user.user_type %></th>
           <td><%= link_to 'Start conversation', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post, class:"btn btn-outline-primary my-2 my-sm-0" %></td>
-        </tr>
+           <%if user.phone.present?%>
+           <% @phone=user.phone %>
+          <td> <%= link_to "https://api.whatsapp.com/send?phone= " + @phone  do %>
+            <strong>Chat On Whatsapp</strong>
+          <% end %></td>
+          <% end %>
+          <%@email= user.email%>
+      <td><%= mail_to "@email" do %>
+            <strong>Send Email</strong>
+          <% end %></td>
+          </tr>
         <% end %>
         <% end %>
       </tbody>

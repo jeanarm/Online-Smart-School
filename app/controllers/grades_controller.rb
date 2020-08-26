@@ -4,9 +4,13 @@ class GradesController < ApplicationController
   # GET /grades
   # GET /grades.json
   def index
-    @search = Grade.search(params[:q])
-    @grades = @search.result.order(:student_id).page(params[:page])
-  end
+    # @search = Grade.search(params[:q])
+    # @grades = @search.result.order(:student_id).page(params[:page])
+    #@grades=Grade.where(course_id:params[:course_id]).page(params[:page])
+    @course=params[:course_id]
+    @grades=Grade.where(course_id:@course).order('student_id ASC').page(params[:page])
+  
+end
 
   # GET /grades/1
   # GET /grades/1.json

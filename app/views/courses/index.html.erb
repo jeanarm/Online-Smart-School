@@ -13,7 +13,7 @@
 }
 </style>
 <table class="table" >
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
       <th>Course code</th>
       <th>Name</th>
@@ -28,18 +28,18 @@
   <tbody>
     <% @courses.each do |course| %>
       <% if user_signed_in? %>
-      <% if current_user.id == course.user_id  %>
+      <% if current_user.id == course.user_id %>
       <tr>
         <td><%= course.code %></td>
         <td><%= course.name %></td>
         <td><%= course.credit %></td>
         <td><%= course.user.name%></td>
-        <td> <%= link_to 'Notes', course_materials_path(course), :"data-no-turbolink" => true, method: "get", class:"btn btn-info" %></td>
-        <td><%= link_to 'Grades', grades_path, :"data-no-turbolink" => true, method: "get", class:"btn btn-info" %></td>
-        <td><%= link_to 'Show', course, :"data-no-turbolink" => true, method: "get", class:"btn btn-info"  %></td>
+        <td> <%= link_to 'Notes', course_materials_path(course), :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0" %></td>
+        <td><%= link_to 'Grades', grades_path(:course_id => course.id), :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0" %></td>
+        <td><%= link_to 'Show', course, :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0"  %></td>
         <% if current_user.id==course.user_id %>
-                <td><%= link_to 'Edit', edit_course_path(course), :"data-no-turbolink" => true, method: "get", class:"btn btn-warning"  %></td>
-                <td><%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, :"data-no-turbolink" => true, method: "get", class:"btn btn-danger"  %></td>
+                <td><%= link_to 'Edit', edit_course_path(course), :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-warning my-2 my-sm-0"  %></td>
+                <td><%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-danger my-2 my-sm-0"  %></td>
                 <td> <%= link_to 'upload notes', new_course_material_path(course), :"data-no-turbolink" => true, method: "get",class:"btn btn-success"  %></td>
                 <td><%= link_to 'Record Marks', new_grade_path(:course_id => course.id), :"data-no-turbolink" => true, method: "get",class:"btn btn-success"  %></td>
         <% end %>    
@@ -53,9 +53,9 @@
         <td><%= course.name %></td>
         <td><%= course.credit %></td>
         <td><%= course.user.name%></td>
-        <td> <%= link_to 'Notes', course_materials_path(course), :"data-no-turbolink" => true, method: "get", class:"btn btn-info" %></td>
-        <td><%= link_to 'Grades', grades_path, :"data-no-turbolink" => true, method: "get", class:"btn btn-info" %></td>
-        <td><%= link_to 'Show', course, :"data-no-turbolink" => true, method: "get", class:"btn btn-info"  %></td>   
+        <td> <%= link_to 'Notes', course_materials_path(course), :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0" %></td>
+        <td><%= link_to 'Grades', grades_path, :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0" %></td>
+        <td><%= link_to 'Show', course, :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0"  %></td>   
         </tr>
         <% end %>
         <% end %>
