@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Grades") do |sheet|
+sheet.add_row ["Student_id", "Names","Quiz 1","Quiz 2", "Quiz 3","Assignment 1", "Assignment 2", "Assignment 3", "Mid_exam","Final_exam", "Out of 100", "Out of 20","Course"]
+  @grades.each do |grade|
+    sheet.add_row [grade.student_id, grade.names,grade.quiz_1,grade.quiz_2, grade.quiz_3,grade.assignment_1, grade.assignment_2, grade.assignment_3, grade.mid_exam,grade.final_exam, grade.out_of_100, grade.out_of_20,grade.course.name]
+  end
+end
+

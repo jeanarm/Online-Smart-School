@@ -1,24 +1,53 @@
+
+<body style="background-color: white !important">
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Course code:</strong>
-  <%= @course.code %>
-</p>
+<h1>Courses</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
+<style>
+.table,.p{
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+</style>
+<table class="table" >
+  <thead class="thead-light">
+    <tr>
+      <th>Course code</th>
+      <th>Name</th>
+      <th>Credit</th>
+      <th>Teacher</th>
+      <th>Notes</th>
+      <th>Marks</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Credit:</strong>
-  <%= @course.credit %>
-</p>
+  <tbody>
+      <tr>
+        <td><%= @course.code %></td>
+        <td><%= @course.name %></td>
+        <td><%= @course.credit %></td>
+        <td><%= @course.user.name%></td>
+        <td> <%= link_to 'Notes', course_materials_path(@course), :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0" %></td>
+        <td><%= link_to 'Grades', grades_path(:course_id => @course.id), :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0" %></td>
+        <% if current_user.id==@course.user_id %>
+                <td><%= link_to 'Edit', edit_course_path(@course), :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-warning my-2 my-sm-0"  %></td>
+                <td><%= link_to 'Delete', @course, method: :delete, data: { confirm: 'Are you sure?' }, :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-danger my-2 my-sm-0"  %></td>
+                <td> <%= link_to 'upload notes', new_course_material_path(@course), :"data-no-turbolink" => true, method: "get",class:"btn btn-success"  %></td>
+                <td><%= link_to 'Record Marks', new_grade_path(:course_id => @course.id), :"data-no-turbolink" => true, method: "get",class:"btn btn-success"  %></td>
+        <% end %>    
+        </tr>
+           
+  </tbody>
+</table>
+<% if current_user.user_type=="Lecturer" %>
+<p class="p"><%= link_to 'New Course', new_course_path, :"data-no-turbolink" => true, method: "get",class:"btn btn-success"%></p>
+<% end %>  
+</body>
+<br>
 
-<p>
-  <strong>User:</strong>
-  <%= @course.user.name %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<p style="margin-bottom:2rem;text-align:center"><%= link_to 'Back', courses_path, :"data-no-turbolink" => true, method: "get",class:"btn btn-dark" %></p>
+<br>

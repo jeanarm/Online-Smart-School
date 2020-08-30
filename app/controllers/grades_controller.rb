@@ -6,10 +6,14 @@ class GradesController < ApplicationController
   def index
     # @search = Grade.search(params[:q])
     # @grades = @search.result.order(:student_id).page(params[:page])
-    #@grades=Grade.where(course_id:params[:course_id]).page(params[:page])
+    # @grades=Grade.where(course_id:params[:course_id]).page(params[:page])
     @course=params[:course_id]
     @grades=Grade.where(course_id:@course).order('student_id ASC').page(params[:page])
-  
+     respond_to do |format|
+      format.html
+      format.xlsx
+    end
+    # @grades=Grade.all.page(params[:page])
 end
 
   # GET /grades/1
@@ -33,7 +37,7 @@ end
 
     respond_to do |format|
       if @grade.save
-        format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
+        format.html { redirect_to courses_path, notice: 'Grade was successfully created.' }
         format.json { render :show, status: :created, location: @grade }
       else
         format.html { render :new }
@@ -47,7 +51,7 @@ end
   def update
     respond_to do |format|
       if @grade.update(grade_params)
-        format.html { redirect_to @grade, notice: 'Grade was successfully updated.' }
+        format.html { redirect_to courses_path, notice: 'Grade was successfully updated.' }
         format.json { render :show, status: :ok, location: @grade }
       else
         format.html { render :edit }

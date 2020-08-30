@@ -81,7 +81,7 @@
 
 <% if check==1 %>
 <span style="color:white"></span>
- <p style="color:white"><%= image_tag links, class:"round" unless links.blank? %> </p>
+ <p style="color:white"><%= image_tag links , class:"round" unless links.blank? %> </p>
  <p><%=name%></p>
  <p>
   <%= link_to 'change ', edit_profile_path(id), :"data-no-turbolink" => true, method: "get" %>
@@ -93,7 +93,8 @@
  <% end %>
 <% end %>
            
-     </p>
+	 </p>
+	
 	    </div>
 	</div>
 	 </div>
@@ -113,6 +114,7 @@
 			<% end %>
 			</div>
 			<ul class="main-menu">
+			<li id="notice" style="color:green"><%= notice %></li>
 			<li><a <%= link_to 'Home', welcome_index_path, :"data-no-turbolink" => true, method: "get" %></a></li>
 			<% if user_signed_in? %>
 			<li><a <%= link_to 'Questions', questions_path, :"data-no-turbolink" => true, method: "get" %></a></li>
@@ -124,7 +126,6 @@
 	</nav>
 	<!-- Header section end -->
 <div>
-<p id="notice"><%= notice %></p>
 <%=yield %>
 </div>
 	<!-- Footer section -->

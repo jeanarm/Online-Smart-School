@@ -8,8 +8,9 @@
 <p id="notice"><%= notice %></p>
 <table class="table">
   <thead class="thead-right">
+  <h1 style:"text-align:center">Grades</h1>
     <tr>
-      <th>Student</th>
+      <th>Student Id</th>
       <th>Names</th>
       <th>Quiz 1</th>
       <th>Quiz 2</th>
@@ -47,7 +48,7 @@
               <td>
                   <%= link_to 'Show', grade, class:"btn btn-outline-primary my-2 my-sm-0" %>
                   <% if current_user.id==grade.course.user_id %>
-                    <%= link_to 'Edit', edit_grade_path(grade), class:"btn btn-outline-success my-2 my-sm-0" %>
+                    <%= link_to 'Edit', edit_grade_path(grade), class:"btn btn-outline-success my-2 my-sm-0", :"data-no-turbolink" => true, method: "get" %>
                   <%= link_to 'Destroy', grade, class:"btn btn-outline-danger my-2 my-sm-0", method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
               </td>

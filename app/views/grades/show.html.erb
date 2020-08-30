@@ -62,8 +62,8 @@
 
 <p>
   <strong>Course:</strong>
-  <%= @grade.course %>
+  <%= @grade.course.name %>
 </p>
 
 <%= link_to 'Edit', edit_grade_path(@grade) %> |
-<%= link_to 'Back', grades_path %>
+<%= link_to 'Back', grades_path, :"data-no-turbolink" => true, method: "get" %>

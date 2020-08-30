@@ -41,6 +41,12 @@
   <span style="color:white"></span>
   <p style="color:white"><%= image_tag links, class:"round" unless links.blank? %></p>
   <p><%= question.user.name %>--><%= link_to 'Start conversation', conversations_path(sender_id: current_user.id, recipient_id: question.user.id), method: :post, class:"btn btn-outline-primary my-2 my-sm-0" %>
+  <%if  question.user.phone.present?%>
+           <% @phone=question.user.phone %>
+          <p> <%= link_to "https://api.whatsapp.com/send?phone= " + @phone  do %>
+            <strong style="color:green">Chat On Whatsapp</strong>
+          <% end %></p>
+          <% end %>
   <% end %>
   </p>
   <% else %>
