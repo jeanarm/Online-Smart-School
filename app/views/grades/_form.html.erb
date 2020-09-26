@@ -134,10 +134,10 @@ body {
     <h2>Add</h2>
     <% if params[:course_id] %>
     <div class="form-group">
-      <%= form.text_field :student_id, class:"form-control input-lg", placeholder:"Add A Student Id" %>
+      <%= form.text_field :student_id, class:"form-control input-lg", placeholder:"Enter Student Id"%>
     </div>
 		<div class="form-group">
-      <%= form.text_field :names, class:"form-control input-lg", placeholder:"Enter Your Names" %>
+      <%= form.text_field :names, class:"form-control input-lg", placeholder:"Enter Your Names"%>
     </div> 
     <div class="form-group">
       <%= form.hidden_field :course_id, class:"form-control input-lg", :value => params[:course_id] %>

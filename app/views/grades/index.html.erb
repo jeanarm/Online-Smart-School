@@ -42,8 +42,8 @@
               <td><%= grade.assignment_3 %></td>
               <td><%= grade.mid_exam %></td>
               <td><%= grade.final_exam %></td>
-              <td><%= grade.out_of_100 %></td>
-              <td><%= grade.out_of_20 %></td>
+              <td><%= grade.out_of_100.round(2)%></td>
+              <td><%= grade.out_of_20.round(2) %></td>
               <td><%= grade.course.name %></td>
               <td>
                   <%= link_to 'Show', grade, class:"btn btn-outline-primary my-2 my-sm-0" %>

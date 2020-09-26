@@ -146,7 +146,10 @@ body {
                         "Lecturer",
                         "Student", ]), 
                         {}, { class: "form form-group form-control" } %>
-        </div> 
+		</div> 
+		<div class="form-group">
+          <%= f.hidden_field :student_id, class:"form-control input-lgl", placeholder:"Enter your student id", required:"required" %>
+        </div>
         <div class="form-group">
           <%= f.submit "Sign up", class:"btn btn-lg btn-block signin-btn", style:"background-color:#020031;color:#fff;" %>
         </div>

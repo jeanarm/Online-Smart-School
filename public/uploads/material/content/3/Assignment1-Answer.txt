@@ -1,0 +1,34 @@
+PART 1
+------
+1.1. cd
+1.2. cd /home/
+
+2.1. ls -l ../P1/P2/P3/Here 
+2.2. ls -l /home/yvette/ahearn/Practice/P1/P2/P3/Here
+
+3.1. cp  P3/Here ../../Command/
+3.2. cp Here ../../../Command/
+3.3. cp -r ../P1/P2/P3 ./Here	or   cp ../P1/P2/P3/Here ../Command/
+3.4. cp /home/ahearn/Practice/P1/P2/P3/Here /home/ahearn/Practice/Command/
+
+4.1 cp -r P3/ ../../Command/
+4.2 cp -r ../P3 ../../../Command/
+4.3 cp -r ../P1/P2/ ./P3/
+4.4 cp -r /home/ahearn/Practice/P1/P2/P3 /home/ahearn/Practice/Command/
+
+5.
+
+
+PART 2
+------
+1.1 cat ../jjdir2/jbd2/file22
+1.2 cat /home/mbrummit/dirtree/jdira/jjdir2/jbd2/file22 
+
+2.1. cat file22 >> ../../../jdirb/jjdir3/jbd3/fileA1
+
+3.1. ls dirtree/
+3.2.  ls /home/mbrummit/dirtree
+3.3.  ls j* >> All
+
+4.1.  using  ls -l ../../../sdirb/ssdir4/sbd4/
+

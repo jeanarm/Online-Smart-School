@@ -114,12 +114,14 @@
 			<% end %>
 			</div>
 			<ul class="main-menu">
-			<li id="notice" style="color:green"><%= notice %></li>
 			<li><a <%= link_to 'Home', welcome_index_path, :"data-no-turbolink" => true, method: "get" %></a></li>
 			<% if user_signed_in? %>
 			<li><a <%= link_to 'Questions', questions_path, :"data-no-turbolink" => true, method: "get" %></a></li>
 			<li><a <%= link_to 'Courses', courses_path, :"data-no-turbolink" => true, method: "get" %></a></li>
 			<li><a  <%= link_to 'Users', users_path, :"data-no-turbolink" => true, method: "get" %></a></li>
+			<% if current_user.admin? %>
+			<li><a <%= link_to 'Admin Panel', rails_admin.dashboard_path, :"data-no-turbolink" => true, method: "get" %></a></li>
+			<% end %>
 			<% end %>
       </ul>
 		</div>
@@ -151,23 +153,15 @@
 					<h6 class="fw-title">USEFUL LINK</h6>
 					<div class="dobule-link">
 						<ul>
-							<li><a href="">Home</a></li>
-							<li><a href="">About us</a></li>
-							<li><a href="">Services</a></li>
-							<li><a href="">Events</a></li>
-							<li><a href="">Features</a></li>
+							<li> <a <%= link_to 'Home', welcome_index_path, :"data-no-turbolink" => true, method: "get" %></a></li>
+							
 						</ul>
 						
 					</div>
 				</div>
 				<!-- widget -->
-				<div class="col-sm-6 col-lg-3 footer-widget">
-					<h6 class="fw-title">RECENT POST</h6>
-					<ul class="recent-post">
-						
-					</ul>
-				</div>
-				<!-- widget -->
+				
+			<!-- widget -->
 				<div class="col-sm-6 col-lg-3 footer-widget">
 					<h6 class="fw-title">CONTACT</h6>
 					<ul class="contact">
