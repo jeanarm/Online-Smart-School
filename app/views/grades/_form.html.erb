@@ -126,7 +126,7 @@ body {
 
       <ul>
       <% grade.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li style="color:red"><%= message %></li>
       <% end %>
       </ul>
     </div>
@@ -180,7 +180,7 @@ body {
     </div>
    <% end %>
         <div class="form-group">
-          <%= form.submit 'Add', class:"btn btn-lg btn-block signin-btn", style:"background-color:#020031;color:#fff;" %>
+          <%= form.submit 'Add Student', class:"btn btn-lg btn-block signin-btn", style:"background-color:#020031;color:#fff;" %>
         </div>
 <% end %>
 </div>

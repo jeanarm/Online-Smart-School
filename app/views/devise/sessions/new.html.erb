@@ -124,6 +124,7 @@ body {
 <div class="signin-form">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 		<h2>Sign in</h2>
+		<p style="color:red"> <%= flash[:alert]%></p>
         <div class="form-group">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control input-lg", placeholder:"Email", required:"required" %>
         </div>

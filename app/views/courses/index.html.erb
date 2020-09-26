@@ -29,7 +29,7 @@
         <% if user_signed_in? %>
         <% if current_user.id == course.user_id %>
         <li class="list-group-item"><%= link_to course.name, course, :"data-no-turbolink" => true, method: "get"%></li>
-        <%= link_to 'Download as .xlsx', grades_path(:course_id => course.id, format: :xlsx),class:"btn btn-outline-success my-2 my-sm-0" %>
+        <%= link_to 'Download Excel report', grades_path(:course_id => course.id, format: :xlsx),class:"btn btn-outline-success my-2 my-sm-0" %>
           <% else %>
           <% if course.grades.present? %>
           <% course.grades.each do |grade| %>  
@@ -48,6 +48,6 @@
 <% end %>
 </body>
 <br>
-<%= paginate @courses%>
+
 
 </html>

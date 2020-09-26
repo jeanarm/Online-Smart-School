@@ -25,6 +25,7 @@
 <% end %>
 <center>
 <div class="container">
+<p style="margin-bottom:2rem"><%= link_to 'New Question', new_question_path, :"data-no-turbolink" => true, method: "get",class:"btn btn-outline-primary my-2 my-sm-0" %><p>
 <div class="row">
 <div class="col-md-8" style="margin-left:10rem;">
 <div class="card">
@@ -61,7 +62,7 @@
     <p class="card-text" style="color:green"> <i>Course<%= question.course.name %> <i></p>
   </div>
   <div class="card-footer">
-    <small class="text-muted"><i class="fa fa-clock-o"></i><%= question.created_at %></small><br>
+    <small class="text-muted"><i class="fa fa-clock-o"></i><%=time_ago_in_words(question.created_at) %></small><br>
     <%= link_to 'show' , question, :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0" %>
     <%if user_signed_in?%>
     <% if current_user.id == question.user_id %>
@@ -104,7 +105,7 @@
     <p class="card-text" style="color:green"> <i>Course: <%= question.course.name %> <i></p>
   </div>
   <div class="card-footer">
-    <small class="text-muted"><i class="fa fa-clock-o"></i><%= question.created_at %></small><br>
+    <small class="text-muted"><i class="fa fa-clock-o"></i><%= time_ago_in_words(question.created_at) %></small><br>
     <%= link_to 'show' , question, :"data-no-turbolink" => true, method: "get", class:"btn btn-outline-info my-2 my-sm-0" %>
     <%if user_signed_in?%>
     <% if current_user.id == question.user_id %>
@@ -125,7 +126,6 @@
 <% end %>
   </div>
   <hr>
-  <p style="margin-bottom:2rem"><%= link_to 'New Question', new_question_path, :"data-no-turbolink" => true, method: "get",class:"btn btn-outline-primary my-2 my-sm-0" %><p>
   <%= paginate @questions %>
 
 </div>

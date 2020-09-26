@@ -8,7 +8,11 @@ class GradesController < ApplicationController
     # @grades = @search.result.order(:student_id).page(params[:page])
     # @grades=Grade.where(course_id:params[:course_id]).page(params[:page])
     @course=params[:course_id]
-    @grades=Grade.where(course_id:@course).order('student_id ASC').page(params[:page])
+    @grad=Grade.where(course_id:@course).order('student_id ASC').page(params[:page])
+
+    @search =  @grad.search(params[:q])
+    @grades= @search.result.order(:student_id).page(params[:page])
+
      respond_to do |format|
       format.html
       format.xlsx

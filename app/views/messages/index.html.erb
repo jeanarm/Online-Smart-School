@@ -147,7 +147,7 @@ body {
      <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
     </div> 
     <div class="form-group">
-      <%= f.submit "send a message", class:"btn btn-lg btn-block signin-btn",style:"background-color:#020031;color:#fff;"  %>
+      <%= f.submit "send a message", class:"btn btn-lg btn-block signin-btn",style:"background-color:#020031;color:#fff;", :"data-no-turbolink" => true, method: "get"   %>
     </div>
 <% end %>
 </div>

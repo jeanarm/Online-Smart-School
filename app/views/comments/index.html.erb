@@ -20,7 +20,7 @@
   <% else %>
   <p><i class="fal fa-user"></i></p>
  <% end %>
-     <%= comment.user.name %>-><i style="color:green"><%= link_to 'message', conversations_path(sender_id: current_user.id, recipient_id: comment.user.id), method: :post %></i>
+     <%= comment.user.name %>
         <div class="course-thumb">
         <% if comment.image.url %>
         <%=  image_tag comment.image.url%>
@@ -44,7 +44,7 @@
       <% end %>
       </div>
       </div>
-<%= link_to 'add Comment', new_question_comment_path, :"data-no-turbolink" => true, method: "get", class:"btn btn-success" %>
+<p style="text-align:center"><%= link_to 'add Comment', new_question_comment_path, :"data-no-turbolink" => true, method: "get", class:"btn btn-success" %></p>
 <%= paginate @comments%>
 </div>
 </div>

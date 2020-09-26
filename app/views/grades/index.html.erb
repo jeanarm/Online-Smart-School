@@ -4,6 +4,12 @@
     margin-top: 5rem;
   }
 </style>
+<p style="margin-top:2rem">
+<%= search_form_for @search, class:"form-inline md-form mr-auto mb-4" do |f| %>  
+  <%= f.search_field :student_id_cont, class:"form-control mr-sm-2", placeholder:"Search" %>
+  <%= f.submit class:"btn btn-outline-success my-2 my-sm-0" %>
+  <% end %>
+  <p>
 <div class="resize">
 <p id="notice"><%= notice %></p>
 <table class="table">
@@ -23,7 +29,7 @@
       <th>Out of 100</th>
       <th>Out of 20</th>
       <th>Course</th>
-      <th>Action</th>
+    
     </tr>
   </thead>
 
@@ -46,10 +52,10 @@
               <td><%= grade.out_of_20.round(2) %></td>
               <td><%= grade.course.name %></td>
               <td>
-                  <%= link_to 'Show', grade, class:"btn btn-outline-primary my-2 my-sm-0" %>
+          
                   <% if current_user.id==grade.course.user_id %>
-                    <%= link_to 'Edit', edit_grade_path(grade), class:"btn btn-outline-success my-2 my-sm-0", :"data-no-turbolink" => true, method: "get" %>
-                  <%= link_to 'Destroy', grade, class:"btn btn-outline-danger my-2 my-sm-0", method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <td> <%= link_to 'Edit', edit_grade_path(grade), class:"btn btn-outline-success my-2 my-sm-0", :"data-no-turbolink" => true, method: "get" %></td>
+                  <td> <%= link_to 'Delete', grade, class:"btn btn-outline-danger my-2 my-sm-0", method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <% end %>
               </td>
               </tr>
@@ -60,6 +66,5 @@
 </table>
 
 <br>
-<%= link_to 'New Grade', new_grade_path, class:"p"%>
 <%= paginate @grades%>
 </div>

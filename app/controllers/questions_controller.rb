@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   # GET /questions.json
   def index
     @search = Question.search(params[:q])
-    @questions =@search.result.order(:title).page(params[:page])
+    @questions =@search.result.order("created_at DESC").page(params[:page])
   end
 
   # GET /questions/1
